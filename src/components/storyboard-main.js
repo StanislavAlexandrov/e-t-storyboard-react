@@ -1,14 +1,21 @@
-import { useState, useRef } from 'react';
-//TODO add the selectedText property to every guess to limit them to one text
-const Storyboard = ({ selectedText }) => {
+import { useState, useRef, useEffect } from 'react';
+
+const Storyboard = ({ selectedText, privateWord }) => {
     const classForInput = useRef();
     const [word, setWord] = useState(''); //handle input
     const [guessArray, setGuessArray] = useState(['']); //store an array of all guesses
 
+    useEffect(() => {
+        Object.values(localStorage).map((element) =>
+            setGuessArray((prevState) => [...prevState, element])
+        );
+    }, []);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!guessArray.includes(word)) {
-            setGuessArray((prevState) => [...prevState, word]); //to avoid duplicates in the guess array, TODO: probably also need to check whether it is in the text
+            setGuessArray((prevState) => [...prevState, word + privateWord]); //to avoid duplicates in the guess array, privateWord is unique for each text
+            localStorage.setItem(word, word + privateWord);
         }
         if (!textObjectSanitized.includes(word)) {
             classForInput.current.className =
@@ -36,12 +43,15 @@ const Storyboard = ({ selectedText }) => {
             new Array(textObjectSanitized[i], false)
         );
 
-        if (guessArray.includes(newArrayOfArraysSanitized[i][0])) {
+        if (
+            guessArray.includes(newArrayOfArraysSanitized[i][0] + privateWord)
+        ) {
             newArrayOfArrays[i][1] = true; //check in the sanitized arrays, flip boolean in the 'display' arrays
         }
     }
+
     return (
-        <div className="text-xl">
+        <div className="text-2xl mx-64 my-16">
             {newArrayOfArrays.map((element, value) =>
                 element[1] === true ? (
                     <span key={value}>{element}</span>
