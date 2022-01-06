@@ -3,57 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from './components/layout';
-import Storyboard from './components/storyboard-main';
-import { LASTSUNDAY, MYOLDNEIGHBOR, SECRETTOYSHOP } from './data/data-texts';
-import { AnimatePresence } from 'framer-motion';
 
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <AnimatePresence exitBeforeEnter>
-                <Routes>
-                    <Route path="/" element={<App />}>
-                        <Route
-                            path="myoldneighbor"
-                            element={
-                                <Storyboard
-                                    selectedText={MYOLDNEIGHBOR}
-                                    privateWord="MYOLDNEIGHBOR"
-                                />
-                            }
-                        />
-                        <Route
-                            path="lastsunday"
-                            element={
-                                <Storyboard
-                                    selectedText={LASTSUNDAY}
-                                    privateWord="LASTSUNDAY"
-                                />
-                            }
-                        />
-                        <Route
-                            path="secrettoyshop"
-                            element={
-                                <Storyboard
-                                    selectedText={SECRETTOYSHOP}
-                                    privateWord="SECRETTOYSHOP"
-                                />
-                            }
-                        />
-                    </Route>
-                    <Route
-                        path="*"
-                        element={
-                            <main style={{ padding: '1rem' }}>
-                                <p>There's nothing here!</p>
-                            </main>
-                        }
-                    />
-                </Routes>
-            </AnimatePresence>
-        </BrowserRouter>
+        <App></App>
     </React.StrictMode>,
     document.getElementById('root')
 );

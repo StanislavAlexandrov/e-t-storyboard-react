@@ -2,20 +2,7 @@ import React from 'react';
 import Storyboard from './storyboard-main';
 import { motion } from 'framer-motion';
 
-const pageMotion = {
-    initial: { opacity: 0, x: -50 },
-    animate: { opacity: 1, x: 0, transition: { duration: 1 } },
-    exit: { opacity: 0, x: 0, transition: { duration: 1 } }, //exit is not being used at the moment
-};
-
 function TabsNew({ items }) {
-    const TabContent = ({ title, content }) => (
-        <div className="tabcontent">
-            <h3>{title}</h3>
-            <p>{content}</p>
-        </div>
-    );
-
     const [active, setActive] = React.useState(null);
 
     const openTab = (e) => setActive(+e.target.dataset.index);
