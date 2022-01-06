@@ -46,7 +46,21 @@ function TabsNew({ items }) {
                     </motion.button>
                 ))}
             </div>
-            {!items[active] && <h1>Choose a story to begin.</h1>}
+            {!items[active] && (
+                <>
+                    <motion.div
+                        className="text-2xl text-violet-800 mt-64"
+                        animate={{
+                            scale: [1, 2, 2, 1, 1.5, 1.2],
+
+                            borderRadius: ['20%', '20%', '50%', '50%', '20%'],
+                        }}
+                    >
+                        👆 Choose a story to begin.
+                    </motion.div>
+                </>
+            )}
+
             {items[active] && (
                 <Storyboard
                     {...items[active]}
