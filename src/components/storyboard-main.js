@@ -17,6 +17,7 @@ const Storyboard = ({ selectedText, privateWord }) => {
             setGuessArray((prevState) => [...prevState, word + privateWord]); //to avoid duplicates in the guess array, privateWord is unique for each text
             localStorage.setItem(word, word + privateWord);
         }
+
         if (!textObjectSanitized.includes(word)) {
             classForInput.current.className =
                 'border-8 border-dotted border-rose-600';
@@ -51,7 +52,7 @@ const Storyboard = ({ selectedText, privateWord }) => {
     }
 
     return (
-        <div className="text-2xl mx-64 my-16">
+        <div className="text-2xl lg:mx-64 my-16 ">
             {newArrayOfArrays.map((element, value) =>
                 element[1] === true ? (
                     <span key={value}>{element}</span>

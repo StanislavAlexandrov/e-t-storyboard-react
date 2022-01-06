@@ -14,7 +14,7 @@ ReactDOM.render(
         <BrowserRouter>
             <AnimatePresence exitBeforeEnter>
                 <Routes>
-                    <Route path="/" element={<Layout />}>
+                    <Route path="/" element={<App />}>
                         <Route
                             path="myoldneighbor"
                             element={
@@ -43,6 +43,14 @@ ReactDOM.render(
                             }
                         />
                     </Route>
+                    <Route
+                        path="*"
+                        element={
+                            <main style={{ padding: '1rem' }}>
+                                <p>There's nothing here!</p>
+                            </main>
+                        }
+                    />
                 </Routes>
             </AnimatePresence>
         </BrowserRouter>
