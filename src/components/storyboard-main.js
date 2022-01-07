@@ -52,35 +52,38 @@ const Storyboard = ({ selectedText, privateWord }) => {
     }
 
     return (
-        <div className="text-sm md:text-2xl lg:mx-64 md:my-16 ">
-            {newArrayOfArrays.map((element, value) =>
-                element[1] === true ? (
-                    <span key={value}>{element}</span>
-                ) : (
-                    element[0].replaceAll(/[a-zA-Z]/gi, '_')
-                )
-            )}
+        <>
+            <div className="text-sm md:text-2xl lg:mx-64 md:my-16 ">
+                <div className="mt-2">{privateWord}</div>
+                {newArrayOfArrays.map((element, value) =>
+                    element[1] === true ? (
+                        <span key={value}>{element}</span>
+                    ) : (
+                        element[0].replaceAll(/[a-zA-Z]/gi, '_')
+                    )
+                )}
 
-            <form onSubmit={handleSubmit} ref={classForInput}>
-                <input
-                    className="md:mt-6 mt-2 focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm leading-6 text-gray-900 placeholder-gray-400 rounded-md py-2 pl-10 ring-1 ring-gray-300 shadow-sm"
-                    type="text"
-                    value={word}
-                    onChange={(e) =>
-                        setWord(e.target.value.toLowerCase().trim())
-                    } //sanitize input
-                />
+                <form onSubmit={handleSubmit} ref={classForInput}>
+                    <input
+                        className="md:mt-6 mt-2 focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm leading-6 text-gray-900 placeholder-gray-400 rounded-md py-2 pl-10 ring-1 ring-gray-300 shadow-sm"
+                        type="text"
+                        value={word}
+                        onChange={(e) =>
+                            setWord(e.target.value.toLowerCase().trim())
+                        } //sanitize input
+                    />
 
-                <input
-                    className={
-                        'md:mt-6 mt-1 ml-1 px-3 py-2 rounded-md bg-sky-500 text-white hover:bg-sky-700'
-                    }
-                    type="text"
-                    type="submit"
-                    value="Submit"
-                />
-            </form>
-        </div>
+                    <input
+                        className={
+                            'md:mt-6 mt-1 ml-1 px-3 py-2 rounded-md bg-sky-500 text-white hover:bg-sky-700'
+                        }
+                        type="text"
+                        type="submit"
+                        value="Submit"
+                    />
+                </form>
+            </div>
+        </>
     );
 };
 
