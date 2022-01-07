@@ -25,7 +25,7 @@ function TabsNew({ items }) {
                         onClick={openTab}
                         data-index={i}
                         key={i}
-                        className="h-10 px-6 m-6 font-semibold rounded-md bg-black text-white  focus:ring focus:ring-violet-300 "
+                        className="h-10 px-6 m-1 md:m-6 font-semibold rounded-md bg-black text-white  focus:ring focus:ring-violet-300 "
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                     >
@@ -36,7 +36,7 @@ function TabsNew({ items }) {
             {!items[active] && (
                 <>
                     <motion.div
-                        className="text-2xl text-violet-800 mt-64"
+                        className="text-2xl text-violet-800 md:mt-64 mt-8"
                         animate={{
                             scale: [1, 2, 2, 1, 1.5, 1.2],
 
