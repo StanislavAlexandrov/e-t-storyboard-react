@@ -31,7 +31,9 @@ const Storyboard = ({ selectedText, privateWord }) => {
 
     let sts = selectedText;
 
-    let textObject = sts.split(/\b/g); //split by word, punctuation and whitespace
+    let textObject = sts.split(/(\W+)/g);
+
+    // let textObject = sts.split(/\b/g); //split by word, punctuation and whitespace
 
     let textObjectSanitized = sts.toLowerCase().split(/\b/g);
 
