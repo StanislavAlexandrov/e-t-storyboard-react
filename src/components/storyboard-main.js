@@ -39,10 +39,8 @@ const Storyboard = ({ selectedText, privateWord }) => {
     let newArrayOfArraysSanitized = []; //one to check sanitized input against
 
     for (let i = 0; i < textObject.length; i++) {
-        newArrayOfArrays.push(new Array(textObject[i], false)); //each enclosed array has the word/punct/whitespace and a boolean defaulting to false
-        newArrayOfArraysSanitized.push(
-            new Array(textObjectSanitized[i], false)
-        );
+        newArrayOfArrays.push([textObject[i], false]); //each enclosed array has the word/punct/whitespace and a boolean defaulting to false
+        newArrayOfArraysSanitized.push([textObjectSanitized[i], false]);
 
         if (
             guessArray.includes(newArrayOfArraysSanitized[i][0] + privateWord)
@@ -73,14 +71,15 @@ const Storyboard = ({ selectedText, privateWord }) => {
                         } //sanitize input
                     />
 
-                    <input
+                    <button
                         className={
                             'md:mt-6 mt-1 ml-1 px-3 py-2 rounded-md bg-sky-500 text-white hover:bg-sky-700'
                         }
-                        type="text"
                         type="submit"
                         value="Submit"
-                    />
+                    >
+                        Submit
+                    </button>
                 </form>
             </div>
         </>
