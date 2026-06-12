@@ -4,21 +4,37 @@ const Storyboard = ({ selectedText, privateWord }) => {
     const classForInput = useRef();
     const [word, setWord] = useState(''); //handle input
     const [guessArray, setGuessArray] = useState(['']); //store an array of all guesses
+    const [recentCorrectWord, setRecentCorrectWord] = useState('');
+    const storageKey = `e-t-storyboard-react:${privateWord}`;
 
     useEffect(() => {
-        Object.values(localStorage).map((element) =>
-            setGuessArray((prevState) => [...prevState, element])
+        const savedGuesses = JSON.parse(
+            localStorage.getItem(storageKey) || '[]',
         );
-    }, []);
+        setGuessArray(savedGuesses);
+    }, [storageKey]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!guessArray.includes(word)) {
-            setGuessArray((prevState) => [...prevState, word + privateWord]); //to avoid duplicates in the guess array, privateWord is unique for each text
-            localStorage.setItem(word, word + privateWord);
+        const storedGuess = word + privateWord;
+
+        if (!guessArray.includes(storedGuess)) {
+            const nextGuesses = [...guessArray, storedGuess];
+            setGuessArray(nextGuesses);
+            localStorage.setItem(storageKey, JSON.stringify(nextGuesses));
         }
 
-        if (!textObjectSanitized.includes(word)) {
+        const isCorrectGuess = textObjectSanitized.includes(word);
+
+        if (isCorrectGuess) {
+            setRecentCorrectWord(word);
+
+            setTimeout(() => {
+                setRecentCorrectWord('');
+            }, 800);
+        }
+
+        if (!isCorrectGuess) {
             classForInput.current.className =
                 'border-8 border-dotted border-rose-600';
 
@@ -57,10 +73,22 @@ const Storyboard = ({ selectedText, privateWord }) => {
                 <div className="mt-2">{privateWord}</div>
                 {newArrayOfArrays.map((element, value) =>
                     element[1] === true ? (
-                        <span key={value}>{element}</span>
+                        <span
+                            key={value}
+                            className={
+                                newArrayOfArraysSanitized[value]?.[0] ===
+                                recentCorrectWord
+                                    ? 'bg-green-300 transition-colors duration-700'
+                                    : ''
+                            }
+                        >
+                            {element[0]}
+                        </span>
                     ) : (
-                        element[0].replaceAll(/[a-zA-Z]/gi, '_')
-                    )
+                        <span key={value}>
+                            {element[0].replaceAll(/[a-zA-Z]/gi, '_')}
+                        </span>
+                    ),
                 )}
 
                 <form onSubmit={handleSubmit} ref={classForInput}>

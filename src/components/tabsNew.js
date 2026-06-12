@@ -16,7 +16,11 @@ function TabsNew({ items }) {
                 className="absolute right-0 mt-8 mr-8"
                 whileHover={{ scale: 2, color: 'red' }}
                 onClick={() => {
-                    localStorage.clear();
+                    Object.keys(localStorage)
+                        .filter((key) =>
+                            key.startsWith('e-t-storyboard-react:'),
+                        )
+                        .forEach((key) => localStorage.removeItem(key));
                     window.location.reload(false);
                 }}
             >
