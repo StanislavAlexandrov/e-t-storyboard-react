@@ -56,4 +56,9 @@ export const allTexts = [
         content:
             'A couple of years ago, my parents moved into a new house. One night in November, the wind woke them up. They looked out the window. It was dark, and the rain was coming down hard. It seemed like a normal stormy night in England. They went back to bed, but they could not sleep because the house was so noisy. My mother was worried. She said, "This new house cannot be very strong if it sounds like this during a storm." When it got light, they got up and looked outside. All the trees in the garden were lying on the ground. That was the night of the terrible hurricane in southern England.',
     },
+    {
+        title: 'The Missing Phone',
+        content:
+            'On Tuesday morning, I was already late for work when I realized my phone was missing. I checked my jacket, my backpack, the kitchen counter, and even the refrigerator, because I was in that kind of mood. Nothing. I was about to give up when my neighbor knocked on the door. She was holding my phone and smiling. "You left this on top of your car," she said. "It rode all the way down the block before it fell off." I thanked her, put the phone in my pocket, and decided to take the bus.',
+    },
 ];
